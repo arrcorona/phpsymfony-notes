@@ -3,6 +3,8 @@ services:
     web:
         build: ./docker
         restart: always
+        depends_on:
+            - db
         volumes:
             - .:/var/www/html
         environment:
@@ -17,6 +19,7 @@ services:
             - '81'
     db:
         image: mysql:5.7
+        platform: linux/amd64
         restart: always
         environment:
             MYSQL_DATABASE: 'vtc-db'
